@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+    </title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css.map">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <style type="text/css">
+        body {
+            background: url("http://www.planwallpaper.com/static/images/518151-backgrounds_W3qVPu2.jpg") no-repeat center center fixed;) no-repeat center center fixed;
+            background-size:cover;
+        }
+    </style>
+
+    <div class="tile is-ancestor" >
+      <div class="tile is-vertical is-12">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-warning"><center>
+              <p class="title">Web Login</p>
+
+            </center>
+            </article>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+<center>
+          <img class="responsive-img" style="width: 150px;" src="http://vignette3.wikia.nocookie.net/fantendo/images/5/5b/NSMBDIY_Mario_Jump.png/revision/latest?cb=20100405031309" />
+    <div class="container">
+    <h1><font size="20"Bold color="red">Sign In</font></h1>
+    <div class="panel panel-default">
+</center>
+
+      <div class="panel-body">
+        <form class="sign" action="#" method="post" id="contactform" align="center">
+          <div class="form-group">
+            <label for="username"><i class="fa fa-drivers-license"></i><font color="green" Bold>Username</font></label>
+            <input type="text" class="form-control" id="username" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="passoword"><i class="fa fa-space-shuttle"></i><font color="green" Bold>Password</font></label>
+            <input type="password" class="form-control" id="password" placeholder="">
+          </div>
+          <div class="form-group">
+            <button type="button" id="signin" class="btn btn-primary" name="button" size="20">Sign In</button>
+          </div>
+        </form>
+      </div>s
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js" charset="utf-8"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+
+      $('#contactform').validate({
+          rules: {
+              username: {
+                minlength: 8,
+                maxlength: 15,
+                  required: true
+              },
+              password: {
+                  minlength: 3,
+                  maxlength: 15,
+                  required: true
+
+              },
+
+
+
+          },
+          highlight: function(element) {
+              $(element).closest('.form-group').addClass('has-error');
+          },
+          unhighlight: function(element) {
+              $(element).closest('.form-group').removeClass('has-error');
+          },
+          errorElement: 'span',
+          errorClass: 'help-block',
+          errorPlacement: function(error, element) {
+              if(element.parent('.input-group').length) {
+                  error.insertAfter(element.parent());
+              } else {
+                  error.insertAfter(element);
+              }
+          }
+      });
+      $('#signin').click(function() {
+
+          if($('#contactform').valid() == false){
+            return;
+          }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+
+  $("#signin").click(function() {
+    //Set a url of password verification api
+    var url = "http://membershipwebapi977290.azurewebsites.net/api/Members/signin?";
+    //Create a url contains username & password as querystring parameters
+    url += "username=" + $("#username").val();
+    url += "&password=" + $("#password").val();
+    console.log(url);
+    //Call the REST Api to verify username/password
+    $.get(url, function(data, status) {
+      console.log(data);
+      //Check if username & password are corrected
+      if(data.Status == true){
+        //Goto User's info page
+
+      }else{
+        //Show error message
+        $("#err").show();
+      }
+    });
+  });
+</script>
+
+  </body>
+</html>
